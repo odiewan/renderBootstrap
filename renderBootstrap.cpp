@@ -1,22 +1,44 @@
 #include "renderBootstrap.h"
+#include <ESP8266WiFi.h>
 
 //=================================================================================================
-render_bootstrap::render_bootstrap::render_bootstrap()
+render_bootstrap::render_bootstrap()
 {
-    rbsClient = nullptr;
+    // rbsClient = NULL;
 }
 
 //=================================================================================================
-render_bootstrap::render_bootstrap(WiFiClient nClient)
+void render_bootstrap::renderCont(String s)
 {
-    rbsClient = nClient;
+    String _html = "<div class='container'>";
+    _html += s;
+    _html += "</div>";
+    rbsClient.print(_html);
+}
+
+//=================================================================================================
+void render_bootstrap::renderAryCont(String ary[]) {
+    String _html = "<div class='container'>%%";
+    int idx = 0;
+
+    while(ary[idx] != NULL) {
+        _html += "<div class='container'>";
+        _html += idx;
+        _html += ":";
+        _html += ary[idx];
+        _html += "</div>";
+        idx++;
+    }
+    _html += "</div>";
+    rbsClient.print(_html);
+
 }
 
 //=================================================================================================
 void render_bootstrap::renderH(int hLvl, String s)
 {
     String _html = "<div class='container'>";
-    _html += "<h" + String(hLvl) + ">";
+    _html += "<h" + String(hLvl) + ">_";
     _html += s;
     _html += "</h" + String(hLvl) + ">";
     _html += "</div>";
@@ -70,4 +92,10 @@ void render_bootstrap::renderH4(String s)
 void render_bootstrap::renderH5(String s)
 {
     renderH(5, s);
+}
+
+//=================================================================================================
+void render_bootstrap::setClient(WiFiClient nClient)
+{
+    rbsClient = nClient;
 }

@@ -3,23 +3,26 @@
 
 #include "Arduino.h"
 #include <String.h>
-#include <WiFiClient.h>
+#include <ESP8266WiFi.h>
+#include <WiFiUdp.h>
 
 class render_bootstrap {
     public:
         WiFiClient rbsClient;
 
         render_bootstrap();
-        render_bootstrap(WiFiClient rbsClient);
 
+        void renderCont(String s);
+        void renderAryCont(String ary[]);
         void renderH(int hLvl, String s);
-        String renderLink(String nUrl, String nName)
-        String renderDataRowCell(String st)
-        void renderH1(String s)
-        void renderH2(String s)
-        void renderH3(String s)
-        void renderH4(String s)
-        void renderH5(String s)
+        void renderLink(String nUrl, String nName);
+        void renderDataRowCell(String st);
+        void renderH1(String s);
+        void renderH2(String s);
+        void renderH3(String s);
+        void renderH4(String s);
+        void renderH5(String s);
+        void setClient(WiFiClient nClient);
 };
 
 #endif
