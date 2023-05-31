@@ -15,6 +15,7 @@ class render_bootstrap {
         void renderCont(String s);
         void renderAryCont(String ary[]);
         void renderH(int hLvl, String s);
+        void renderHDiv(int hLvl, String s);
         void renderLink(String nUrl, String nName);
         void renderDataRowCell(String st);
         void renderH1(String s);

@@ -37,8 +37,17 @@ void render_bootstrap::renderAryCont(String ary[]) {
 //=================================================================================================
 void render_bootstrap::renderH(int hLvl, String s)
 {
+    String _html = "<h" + String(hLvl) + ">";
+    _html += s;
+    _html += "</h" + String(hLvl) + ">";
+    rbsClient.print(_html);
+}
+
+//=================================================================================================
+void render_bootstrap::renderHDiv(int hLvl, String s)
+{
     String _html = "<div class='container'>";
-    _html += "<h" + String(hLvl) + ">_";
+    _html += "<h" + String(hLvl) + ">";
     _html += s;
     _html += "</h" + String(hLvl) + ">";
     _html += "</div>";
