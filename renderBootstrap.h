@@ -6,6 +6,20 @@
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
 
+enum buttonStyles {
+  BTN_STYLE_BASIC,
+  BTN_STYLE_DEFAULT,
+  BTN_STYLE_PRIMARY,
+  BTN_STYLE_SUCCESS,
+  BTN_STYLE_INFO,
+  BTN_STYLE_WARNING,
+  BTN_STYLE_DANGER,
+  BTN_STYLE_LINK,
+  NUM_BUTTON_STYLES
+};
+
+
+
 class render_bootstrap {
     public:
         WiFiClient rbsClient;
@@ -13,6 +27,8 @@ class render_bootstrap {
         render_bootstrap();
 
         void renderCont(String s);
+        void renderButton(String nName, buttonStyles nStyle);
+        void renderButtonLink(String nUrl, String nName, buttonStyles nStyle);
         void renderAryCont(String ary[]);
         void renderH(int hLvl, String s);
         void renderHDiv(int hLvl, String s);

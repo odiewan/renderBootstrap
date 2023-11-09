@@ -1,10 +1,33 @@
 #include "renderBootstrap.h"
 #include <ESP8266WiFi.h>
 
+String buttonStyleNames[] = {
+    "btn",
+    "btn-default",
+    "btn-primary",
+    "btn-success",
+    "btn-info",
+    "btn-warning",
+    "btn-danger",
+    "btn-link"
+};
+
 //=================================================================================================
 render_bootstrap::render_bootstrap()
 {
     // rbsClient = NULL;
+}
+
+//=================================================================================================
+void render_bootstrap::renderButton(String nName, buttonStyles nStyle) {
+    String _html = "<button type='button' class='btn " + buttonStyleNames[nStyle] + "'>" + nName + "</button>";
+    rbsClient.print(_html);
+}
+
+//=================================================================================================
+void render_bootstrap::renderButtonLink(String nUrl, String nName, buttonStyles nStyle) {
+    String _html = "<a href='" + nUrl + "' class='btn " + buttonStyleNames[nStyle] + "'>" + nName + "</a>";
+    rbsClient.print(_html);
 }
 
 //=================================================================================================
