@@ -38,8 +38,9 @@ void render_bootstrap::renderButtonLink(String nUrl, String nName, buttonStyles 
 }
 
 //=================================================================================================
-void render_bootstrap:: renderButtonGroup(String nUrl, String nName, buttonGroupStyles nBGStyle) {
+void render_bootstrap:: renderButtonGroup(String nID, String nName, buttonGroupStyles nBGStyle) {
   String _html;
+  String _arg;
   switch (nBGStyle) {
     default:
     case BGS_H_BINARY:
@@ -52,106 +53,138 @@ void render_bootstrap:: renderButtonGroup(String nUrl, String nName, buttonGroup
 
     case BGS_H_ON_OFF:
         _html = "<div class='btn-group'>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>ON</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>OFF</a>";
+        _html += "<a href='#' class='btn btn-basic'>ON</a>";
+        _html += "<a href='#' class='btn btn-basic'>OFF</a>";
         _html += "</div>";
         break;
 
     case BGS_H_COLOR_SET:
-        _html = "<div class='btn-group'>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>MAX</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>+</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>MID</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>-</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>MIN</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>OFF</a>";
+      _arg = "/neopixel?colorID=";
+      _arg += nID;
+      _arg += "&red&acn=";
 
-        _html += "</div>";
-        break;
+      _html = "<div class='btn-group'>";
+      _html += genLinkButton("MAX", _arg + "255", BTN_STYLE_LIGHT);
+      _html += genLinkButton("+", _arg + "inc", BTN_STYLE_LIGHT);
+      _html += genLinkButton("MID", _arg + "127", BTN_STYLE_LIGHT);
+      _html += genLinkButton("-", _arg + "dec", BTN_STYLE_LIGHT);
+      _html += genLinkButton("MIN", _arg + "10", BTN_STYLE_LIGHT);
+      _html += genLinkButton("OFF", _arg + "0", BTN_STYLE_LIGHT);
+
+      _html += "</div>";
+      break;
 
     case BGS_H_COLOR_SET_RED:
-        _html = "<div class='btn-group'>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>MAX</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>+</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>MID</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>-</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>MIN</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>OFF</a>";
-        _html += "</div>";
-        break;
+      _arg = "/neopixel?colorID=";
+      _arg += nID;
+      _arg += "&red&acn=";
+
+      _html = "<div class='btn-group'>";
+      _html += genLinkButton("MAX", _arg + "255", BTN_STYLE_DANGER);
+      _html += genLinkButton("+", _arg + "inc", BTN_STYLE_DANGER);
+      _html += genLinkButton("MID", _arg + "127", BTN_STYLE_DANGER);
+      _html += genLinkButton("-", _arg + "dec", BTN_STYLE_DANGER);
+      _html += genLinkButton("MIN", _arg + "10", BTN_STYLE_DANGER);
+      _html += genLinkButton("OFF", _arg + "0", BTN_STYLE_DANGER);
+      _html += "</div>";
+      break;
 
     case BGS_H_COLOR_SET_BLUE:
-         _html = "<div class='btn-group'>";
-         _html += "<a href='" + nUrl + "' class='btn btn-basic'>MAX</a>";
-         _html += "<a href='" + nUrl + "' class='btn btn-basic'>+</a>";
-         _html += "<a href='" + nUrl + "' class='btn btn-basic'>MID</a>";
-         _html += "<a href='" + nUrl + "' class='btn btn-basic'>-</a>";
-         _html += "<a href='" + nUrl + "' class='btn btn-basic'>MIN</a>";
-         _html += "<a href='" + nUrl + "' class='btn btn-basic'>OFF</a>";
-         _html += "</div>";
-         break;
+      _arg = "/neopixel?colorID=";
+      _arg += nID;
+      _arg += "&red&acn=";
+
+      _html = "<div class='btn-group'>";
+      _html += genLinkButton("MAX", _arg + "255", BTN_STYLE_PRIMARY);
+      _html += genLinkButton("+", _arg + "inc", BTN_STYLE_PRIMARY);
+      _html += genLinkButton("MID", _arg + "127", BTN_STYLE_PRIMARY);
+      _html += genLinkButton("-", _arg + "dec", BTN_STYLE_PRIMARY);
+      _html += genLinkButton("MIN", _arg + "10", BTN_STYLE_PRIMARY);
+      _html += genLinkButton("OFF", _arg + "0", BTN_STYLE_PRIMARY);
+      _html += "</div>";
+      break;
 
     case BGS_H_COLOR_SET_GREEN:
+        _arg = "/neopixel?colorID=";
+        _arg += nID;
+        _arg += "&red&acn=";
+
         _html = "<div class='btn-group'>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>MAX</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>+</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>MID</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>-</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>MIN</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>OFF</a>";
+        _html += genLinkButton("MAX", _arg + "255", BTN_STYLE_SUCCESS);
+        _html += genLinkButton("+",   _arg + "inc", BTN_STYLE_SUCCESS);
+        _html += genLinkButton("MID", _arg + "127", BTN_STYLE_SUCCESS);
+        _html += genLinkButton("-",   _arg + "dec", BTN_STYLE_SUCCESS);
+        _html += genLinkButton("MIN", _arg + "10" , BTN_STYLE_SUCCESS);
+        _html += genLinkButton("OFF", _arg + "0"  , BTN_STYLE_SUCCESS);
         _html += "</div>";
         break;
 
     case BGS_V_ON_OFF:
       _html = "<div class='btn-group-vertical'>";
-      _html += "<a href='" + nUrl + "' class='btn btn-basic'>ON</a>";
-      _html += "<a href='" + nUrl + "' class='btn btn-basic'>OFF</a>";
+      _html += "<a href='#' class='btn btn-basic'>ON</a>";
+      _html += "<a href='#' class='btn btn-basic'>OFF</a>";
       _html += "</div>";
       break;
 
     case BGS_V_COLOR_SET:
+        _arg = "/neopixel?colorID=";
+        _arg += nID;
+        _arg += "&all&acn=";
+
         _html = "<div class='btn-group-vertical'>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>MAX</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>+</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>MID</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>-</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>MIN</a>";
-        _html += "<a href='" + nUrl + "' class='btn btn-basic'>OFF</a>";
+        _html += genLinkButton("MAX", _arg + "255", BTN_STYLE_LIGHT);
+        _html += genLinkButton("+",   _arg + "inc", BTN_STYLE_LIGHT);
+        _html += genLinkButton("MID", _arg + "127", BTN_STYLE_LIGHT);
+        _html += genLinkButton("-",   _arg + "dec", BTN_STYLE_LIGHT);
+        _html += genLinkButton("MIN", _arg + "10" , BTN_STYLE_LIGHT);
+        _html += genLinkButton("OFF", _arg + "0"  , BTN_STYLE_LIGHT);
 
         _html += "</div>";
         break;
 
     case BGS_V_COLOR_SET_RED:
-        _html = "<div class='btn-group-vertical'>";
-        _html += genLinkButton("MAX", "#", BTN_STYLE_DANGER);
-        _html += genLinkButton("+", "#", BTN_STYLE_DANGER);
-        _html += genLinkButton("MID", "#", BTN_STYLE_DANGER);
-        _html += genLinkButton("-", "#", BTN_STYLE_DANGER);
-        _html += genLinkButton("MIN", "#", BTN_STYLE_DANGER);
-        _html += genLinkButton("OFF", "#", BTN_STYLE_DANGER);
-        _html += "</div>";
-        break;
+      _arg = "/neopixel?colorID=";
+      _arg += nID;
+      _arg += "&red&acn=";
+
+      _html = "<div class='btn-group-vertical'>";
+      _html += genLinkButton("MAX", _arg + "255", BTN_STYLE_DANGER);
+      _html += genLinkButton("+", _arg + "inc", BTN_STYLE_DANGER);
+      _html += genLinkButton("MID", _arg + "127", BTN_STYLE_DANGER);
+      _html += genLinkButton("-", _arg + "dec", BTN_STYLE_DANGER);
+      _html += genLinkButton("MIN", _arg + "10", BTN_STYLE_DANGER);
+      _html += genLinkButton("OFF", _arg + "0", BTN_STYLE_DANGER);
+      _html += "</div>";
+      break;
 
     case BGS_V_COLOR_SET_BLUE:
+      _arg = "/neopixel?colorID=";
+      _arg += nID;
+      _arg += "&red&acn=";
+
       _html = "<div class='btn-group-vertical'>";
-      _html += genLinkButton("MAX", "#", BTN_STYLE_PRIMARY);
-      _html += genLinkButton("+", "#", BTN_STYLE_PRIMARY);
-      _html += genLinkButton("MID", "#", BTN_STYLE_PRIMARY);
-      _html += genLinkButton("-", "#", BTN_STYLE_PRIMARY);
-      _html += genLinkButton("MIN", "#", BTN_STYLE_PRIMARY);
-      _html += genLinkButton("OFF", "#", BTN_STYLE_PRIMARY);
+      _html += genLinkButton("MAX",  _arg + "255", BTN_STYLE_PRIMARY);
+      _html += genLinkButton("+",    _arg + "inc", BTN_STYLE_PRIMARY);
+      _html += genLinkButton("MID",  _arg + "127", BTN_STYLE_PRIMARY);
+      _html += genLinkButton("-",    _arg + "dec", BTN_STYLE_PRIMARY);
+      _html += genLinkButton("MIN",  _arg + "10" , BTN_STYLE_PRIMARY);
+      _html += genLinkButton("OFF",  _arg + "0"  , BTN_STYLE_PRIMARY);
 
       _html += "</div>";
       break;
 
     case BGS_V_COLOR_SET_GREEN:
+      _arg = "/neopixel?colorID=";
+      _arg += nID;
+      _arg += "&red&acn=";
+
       _html = "<div class='btn-group-vertical'>";
-      _html += genLinkButton("MAX", "#", BTN_STYLE_SUCCESS);
-      _html += genLinkButton("+", "#", BTN_STYLE_SUCCESS);
-      _html += genLinkButton("MID", "#", BTN_STYLE_SUCCESS);
-      _html += genLinkButton("-", "#", BTN_STYLE_SUCCESS);
-      _html += genLinkButton("MIN", "#", BTN_STYLE_SUCCESS);
-      _html += genLinkButton("OFF", "#", BTN_STYLE_SUCCESS);
+      _html += genLinkButton("MAX",  _arg + "255", BTN_STYLE_SUCCESS);
+      _html += genLinkButton("+",    _arg + "inc", BTN_STYLE_SUCCESS);
+      _html += genLinkButton("MID",  _arg + "127", BTN_STYLE_SUCCESS);
+      _html += genLinkButton("-",    _arg + "dec", BTN_STYLE_SUCCESS);
+      _html += genLinkButton("MIN",  _arg + "10" , BTN_STYLE_SUCCESS);
+      _html += genLinkButton("OFF",  _arg + "0"  , BTN_STYLE_SUCCESS);
       _html += "</div>";
       break;
 

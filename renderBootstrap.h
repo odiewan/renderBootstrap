@@ -49,7 +49,7 @@ class render_bootstrap {
     void renderCont(String s);
     void renderButton(String nName, buttonStyles nStyle);
     void renderButtonLink(String nUrl, String nName, buttonStyles nStyle);
-    void renderButtonGroup(String nUrl, String nName, buttonGroupStyles nBGStyle);
+    void renderButtonGroup(String nID, String nName, buttonGroupStyles nBGStyle);
 
     void renderAryCont(String ary[]);
     void renderH(int hLvl, String s);
